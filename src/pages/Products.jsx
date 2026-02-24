@@ -4,7 +4,7 @@ import ProductCard from "../components/ProductCard";
 
 const Products = () => {
   return (
-    <div className="pt-24 pb-16 bg-gradient-to-b from-gray-50 to-white min-h-screen">
+    <div className="pt-24 pb-16 bg-linear-to-b from-gray-50 to-white min-h-screen">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         

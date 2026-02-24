@@ -7,7 +7,7 @@ import { HiLocationMarker } from "react-icons/hi";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-black via-gray-900 to-black text-gray-300 pt-16 pb-8 mt-20">
+    <footer className="bg-linear-to-br from-black via-gray-900 to-black text-gray-300 pt-16 pb-8 mt-20">
       
       <div className="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 md:grid-cols-4 gap-12">
         

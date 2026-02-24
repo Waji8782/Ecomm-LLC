@@ -1,45 +1,41 @@
-import React, { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useState } from "react";
 import { Mail, Phone, MessageCircle } from "lucide-react";
 
 const Contact = () => {
-  const form = useRef();
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
-  const sendEmail = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const currentTime = new Date().toLocaleString();
-    form.current.time.value = currentTime;
+    const formData = new FormData(e.target);
 
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_SERVICE_ID,
-        import.meta.env.VITE_TEMPLATE_ID,
-        form.current,
-        import.meta.env.VITE_PUBLIC_KEY,
-      )
-      .then(
-        () => {
-          setLoading(false);
-          setShowPopup(true);
-          form.current.reset();
-
-          setTimeout(() => {
-            setShowPopup(false);
-          }, 4000);
-        },
-        (error) => {
-          console.log("ERROR:", error);
-          setLoading(false);
-          alert("Something went wrong ❌");
-        },
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/wajidmalik8476@gmail.com", // 🔴 Replace with your email
+        {
+          method: "POST",
+          body: formData,
+        }
       );
-  };
 
-  console.log(import.meta.env);
+      if (response.ok) {
+        setShowPopup(true);
+        e.target.reset();
+
+        setTimeout(() => {
+          setShowPopup(false);
+        }, 4000);
+      } else {
+        alert("Something went wrong ❌");
+      }
+    } catch (error) {
+      alert("Error sending message ❌");
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div className="pt-28 bg-gray-50 min-h-screen relative">
@@ -61,8 +57,17 @@ const Contact = () => {
             Send Us a Message
           </h2>
 
-          <form ref={form} onSubmit={sendEmail} className="space-y-6">
-            <input type="hidden" name="time" />
+          <form onSubmit={handleSubmit} className="space-y-6">
+            
+            {/* Hidden Fields */}
+            <input type="hidden" name="_captcha" value="false" />
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Contact Message - WM ECOM LLC"
+            />
+
+            <input type="hidden" name="_template" value="table" />
 
             <div>
               <label className="block mb-2 font-medium">Full Name</label>
@@ -108,20 +113,19 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Modern Popup Modal */}
+      {/* Popup Modal */}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
-          <div className="bg-white w-[90%] max-w-md p-8 rounded-2xl shadow-2xl text-center animate-scaleIn">
-            
+          <div className="bg-white w-[90%] max-w-md p-8 rounded-2xl shadow-2xl text-center">
             <div className="text-green-500 text-5xl mb-4">✓</div>
-            
+
             <h3 className="text-2xl font-bold mb-3">
               Thank You!
             </h3>
-            
+
             <p className="text-gray-600 mb-6">
-              Thankyou for showing interest in our products,
-              our team will reach to you as soon as possible.
+              Thank you for showing interest in our products.
+              Our team will reach out to you as soon as possible.
             </p>
 
             <button
