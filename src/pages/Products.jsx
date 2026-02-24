@@ -1,22 +1,41 @@
-import React from 'react'
+import React from "react";
 import products from "../data/products";
 import ProductCard from "../components/ProductCard";
 
 const Products = () => {
   return (
-    <div className="pt-28 pb-20 bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-6">
+    <div className="pt-24 pb-16 bg-gradient-to-b from-gray-50 to-white min-h-screen">
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold">Our Full Collection</h1>
-          <p className="text-gray-600 mt-3">
-            Explore our complete range of premium fashion wear.
+        {/* Page Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+            Our Full Collection
+          </h1>
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base">
+            Explore our complete range of premium fashion wear crafted
+            for comfort, confidence, and everyday elegance.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {/* Products Grid */}
+        <div className="
+          grid 
+          grid-cols-1 
+          sm:grid-cols-2 
+          md:grid-cols-3 
+          lg:grid-cols-4 
+          gap-6 
+          sm:gap-8
+        ">
           {products.map((product) => (
-            <ProductCard key={product.id} {...product} />
+            <div
+              key={product.id}
+              className="transform transition duration-300 hover:scale-[1.02]"
+            >
+              <ProductCard {...product} />
+            </div>
           ))}
         </div>
 
