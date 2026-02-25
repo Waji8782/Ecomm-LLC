@@ -13,7 +13,7 @@ const Contact = () => {
 
     try {
       const response = await fetch(
-        "https://formsubmit.co/ajax/wajidmalik8476@gmail.com", // 🔴 Replace with your email
+        "https://formsubmit.co/ajax/wajidmalik@wm-ecom-llc.com", // 🔴 Replace with your email
         {
           method: "POST",
           body: formData,
